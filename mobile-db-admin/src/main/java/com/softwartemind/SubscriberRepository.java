@@ -24,12 +24,14 @@ public class SubscriberRepository {
     public List<Subscriber> getSubscribers(String sortBy) {
         String sql = "SELECT * FROM Subscriber ORDER BY " + sortBy;
         List<Subscriber> subscribers = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Subscriber.class));
+
         return subscribers;
     }
 
     public Subscriber getSubscriberById(int subscriberId) {
         String sql = "SELECT * FROM Subscriber WHERE SubscriberId = " + subscriberId;
         Subscriber subscriber = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Subscriber.class)).get(0);
+
         return subscriber;
     }
 
