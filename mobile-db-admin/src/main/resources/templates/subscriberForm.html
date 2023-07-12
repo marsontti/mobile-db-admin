@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Subscriber Form</title>
+</head>
+<body style="background-color: #1F2121; background-size: cover;  background-attachment: fixed, color: white;" >
+
+
+
+
+
+<div align="center">
+  <!-- Page header -->
+  <h1 style="color: white;  font-family: Calibri">Subscriber Form</h1>
+
+
+  <form action="#" th:action="${ subscriber.subscriberId == 0 ? '/addSubscriber' : '/updateSubscriber'}" th:object="${subscriber}"
+        method="post">
+    <!-- Table -->
+    <table style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px;" bgcolor="#444444" border="0.5" cellpadding="5">
+      <tr style=" background-color: #777777;" th:if="${subscriber.subscriberId != 0}">
+        <td style=" border-bottom-left-radius: 10px; border-top-left-radius: 10px;"><font style="color: white;  font-family: Calibri" >Subscriber Id</font></td>
+        <td style="  border-bottom-right-radius: 10px; border-top-right-radius: 10px;"><input type="text" th:field="*{subscriberId}" readonly="readonly"></td>
+      </tr>
+      <tr style=" background-color: #777777;">
+          <td style=" border-bottom-left-radius: 10px; border-top-left-radius: 10px;"><font style="color: white;  font-family: Calibri" >Name</font></td>
+          <td style="  border-bottom-right-radius: 10px; border-top-right-radius: 10px;"><input type="text" th:field="*{name}" required></td>
+      </tr>
+      <tr style=" background-color: #777777;">
+        <td style=" border-bottom-left-radius: 10px; border-top-left-radius: 10px;"><font style="color: white;  font-family: Calibri" >Surname</font></td>
+        <td style="  border-bottom-right-radius: 10px; border-top-right-radius: 10px;"><input type="text" th:field="*{surname}" required></td>
+      </tr>
+      <tr style=" background-color: #777777;">
+        <td style=" border-bottom-left-radius: 10px; border-top-left-radius: 10px;"><font style="color: white;  font-family: Calibri">IMSI</font></td>
+        <td style="  border-bottom-right-radius: 10px; border-top-right-radius: 10px;"><input type="text" pattern="[0-9]{6}[0-9]{0,9}" title="Please enter between 6-15 digits" id="subsImsi" name="subsImsi" th:value="${subsImsi}" required></td>
+      </tr>
+      <tr style=" background-color: #777777;">
+        <td style=" border-bottom-left-radius: 10px; border-top-left-radius: 10px;"><font style="color: white;  font-family: Calibri">Phone Number</font></td>
+        <td style="  border-bottom-right-radius: 10px; border-top-right-radius: 10px;"><input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" title="Please enter exactly 9 digits" th:field="*{phoneNumber}" ></td>
+      </tr>
+      <tr style=" background-color: #777777;">
+        <td style=" border-bottom-left-radius: 10px; border-top-left-radius: 10px;"><font style="color: white;  font-family: Calibri">Provider</font></td>
+        <td style="  border-bottom-right-radius: 10px; border-top-right-radius: 10px;"><input type="text" th:field="*{provider}" ></td>
+      </tr>
+      <tr style=" background-color: #777777;">
+        <td style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px;" colspan="2"><input type="image" name="imageSubmit" value="image" src="https://icon-library.com/images/save-image-icon/save-image-icon-21.jpg" height="40px" alt="Save" title="Save" ></td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>

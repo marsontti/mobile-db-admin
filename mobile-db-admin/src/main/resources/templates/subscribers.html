@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Subscribers DB</title>
+</head>
+<body
+        style="background-color: #1F2121; background-size: cover; background-attachment: fixed, color: white;">
+
+<div align="center">
+    <!-- Page header -->
+    <h1 style="color: white;  font-family: Calibri">Subscribers</h1>
+
+    <form id="sortForm" action="/filteredSubscribers">
+        <label style="color: white;  font-family: Calibri" >Sort by:</label>
+        <select id="Sort" name="sortBy">
+            <option value="SubscriberId">SubscriberId</option>
+            <option value="Name">Name</option>
+            <option value="Surname">Surname</option>
+            <option value="IMSI">IMSI</option>
+            <option value="PhoneNumber">Phone Number</option>
+            <option value="Provider">Provider</option>
+        </select>
+        &nbsp;&nbsp;
+        <input type="text" name="searchValue" th:value="${searchValue}" placeholder="Search..." />
+        <td colspan="2"><button style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; background-color: #888888" type="submit"><font style="color: white; font-family: Calibri"><b>Submit filters</b></font></button></td>
+    </form>
+
+    <br>
+
+    <!-- Table -->
+    <table style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px;" bgcolor="#444444" border="0.5" cellpadding="5">
+        <!-- Table header  -->
+        <thead>
+        <tr>
+            <th style=" border-bottom-left-radius: 10px; border-top-left-radius: 10px;"><font style="color: white;  font-family: Calibri">SubscriberId</font></th>
+            <th><font style="color: white;  font-family: Calibri">Name</font></th>
+            <th><font style="color: white;  font-family: Calibri">Surname</font></th>
+            <th><font style="color: white;  font-family: Calibri">IMSI</font></th>
+            <th><font style="color: white;  font-family: Calibri">Phone Number</font></th>
+            <th><font style="color: white;  font-family: Calibri">Provider</font></th>
+            <th style="  border-bottom-right-radius: 10px; border-top-right-radius: 10px;"><font style="color: white;  font-family: Calibri">Functions</font></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style=" background-color: #777777;" th:each="subscriber : ${subscribersList}"
+            th:if= "${subscriber.subscriberId == searchValue
+          or #strings.contains(subscriber.name, searchValue)
+          or #strings.contains(subscriber.surname, searchValue)
+          or #strings.contains(subscriber.imsi.toString(), searchValue)
+          or #strings.contains(subscriber.phoneNumber.toString(), searchValue)
+          or #strings.contains(subscriber.provider, searchValue)
+          or searchValue == ''}">
+            <td  th:text="${subscriber.subscriberId}" style="border-bottom-left-radius: 10px; border-top-left-radius: 10px;color: white;  font-family: Calibri">SubscriberId</td>
+            <td th:text="${subscriber.name}" style="color: white;  font-family: Calibri">Name</td>
+            <td th:text="${subscriber.surname}" style="color: white;  font-family: Calibri">Surname</td>
+            <td th:text="${subscriber.imsi}" style="color: white;  font-family: Calibri">IMSI</td>
+            <td th:text="${subscriber.phoneNumber}" style="color: white;  font-family: Calibri">Phone Number</td>
+            <td th:text="${subscriber.provider}" style="color: white;  font-family: Calibri">Provider</td>
+            <td style="border-bottom-right-radius: 10px;  border-top-right-radius: 10px; text-align: center" colspan="2">
+                <form action="#"
+                      th:action="@{'/subscriberForm/' + ${subscriber.subscriberId}}"
+                      method="get">
+                    <button style=" border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; background-color: #003366" type="submit" ><font style=" color: white; font-family: Calibri"><b>Edit</b></font></button>
+                </form> <br>
+                <form action="#"
+                      th:action="@{'/deleteSubscriber/' + ${subscriber.subscriberId}}"
+                      method="get">
+                    <button style=" border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; background-color: #990000" type="submit" ><font style="color: white; font-family: Calibri"><b>Delete</b></font></button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br> <br>
+    <form action="#" th:action="@{'/subscriberForm/' + ${0}}">
+        <td colspan="2"><button style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; background-color: #888888" type="submit"><font style="color: white; font-family: Calibri"><b>Add Subscriber</b></font></button></td>
+    </form>
+
+</div>
+
+</body>
+</html>
