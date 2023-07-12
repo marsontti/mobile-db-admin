@@ -1,0 +1,38 @@
+/*
+Created: 06.07.2023
+Modified: 06.07.2023
+Model: Microsoft SQL Server 2019
+Database: MS SQL Server 2019
+*/
+
+
+-- Create tables section -------------------------------------------------
+
+-- Table Subscriber
+
+CREATE TABLE [Subscriber]
+(
+ [SubscriberId] Int NOT NULL IDENTITY ,
+ [Name] Char(30) NOT NULL,
+ [Surname] Char(30) NOT NULL,
+ [IMSI] BIGINT NOT NULL,
+ [PhoneNumber] Int NOT NULL
+ [Provider] Varchar(50) NOT NULL,
+
+)
+go
+
+-- Add keys for table Subscriber
+
+ALTER TABLE [Subscriber] ADD CONSTRAINT [PK_Subscriber] PRIMARY KEY ([SubscriberId])
+go
+
+ALTER TABLE [Subscriber] ADD CONSTRAINT [IMSI] UNIQUE ([IMSI])
+go
+
+ALTER TABLE [Subscriber] ADD CONSTRAINT [PhoneNumber] UNIQUE ([PhoneNumber])
+go
+
+
+
+
