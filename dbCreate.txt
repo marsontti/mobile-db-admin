@@ -12,12 +12,12 @@ Database: MS SQL Server 2019
 
 CREATE TABLE [Subscriber]
 (
- [SubscriberId] Int NOT NULL IDENTITY ,
+ [SubscriberId] Int NOT NULL IDENTITY,
  [Name] Char(30) NOT NULL,
  [Surname] Char(30) NOT NULL,
  [IMSI] BIGINT NOT NULL,
- [PhoneNumber] Int NOT NULL
- [Provider] Varchar(50) NOT NULL,
+ [PhoneNumber] Int NOT NULL,
+ [Provider] Varchar(50) NOT NULL
 
 )
 go
